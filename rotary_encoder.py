@@ -22,7 +22,7 @@ def millis():
     return int(time.time() * 1000)
 
 
-class RotaryEncoder(Object):
+class RotaryEncoder(object):
     def __init__(self, pin1, pin2, mode=LATCHMODE['FOUR0']):
         self._pin1
         self._pin2
@@ -86,19 +86,19 @@ class RotaryEncoder(Object):
             self._oldState = this_state
 
             if self._mode == LATCHMODE['FOUR3']:
-                if thisState == LATCH3:
+                if this_state == LATCH3:
                     # The hardware has 4 steps with a latch on the input state 3
                     self._positionExt = self._position >> 2
                     self._positionExtTimePrev = self._positionExtTime
                     self._positionExtTime = millis()  # TODO: GET TIME IN MILLISECONDS
                 elif self._mode == LATCHMODE['FOUR0']:
-                    if thisState == LATCH0:
+                    if this_state == LATCH0:
                         # The hardware has 4 steps with a latch on the input state 0
                         self._positionExt = self._position >> 2
                         self._positionExtTimePrev = self._positionExtTime
                         self._positionExtTime = millis()  # TODO: GET TIME IN MILLISECONDS
                 else:
-                    if (thisState == LATCH0) | | (thisState == LATCH3):
+                    if (this_state == LATCH0) | | (this_state == LATCH3):
                         # The hardware has 2 steps with a latch on the input state 0 and 3
                         self._positionExt = self._position >> 1
                         self._positionExtTimePrev = self._positionExtTime

@@ -55,60 +55,60 @@ class RotaryEncoder(Object):
         if self._positionExtPrev > self._positionExt:
             ret = DIRECTION['COUNTERCLOCKWISE']
             self._positionExtPrev = self._positionExt
-        elif (self._positionExtPrev < self._positionExt) {
-            ret = DIRECTION['CLOCKWISE']
-            self._positionExtPrev = self._positionExt
-            else:
-            ret = DIRECTION['NOROTATION']
-            self._positionExtPrev = self._positionExt
+        elif self._positionExtPrev < self._positionExt:
+              ret = DIRECTION['CLOCKWISE']
+              self._positionExtPrev = self._positionExt
+        else:
+              ret = DIRECTION['NOROTATION']
+              self._positionExtPrev = self._positionExt
 
-            return ret
+        return ret
 
-            def set_position(self, new_pos):
-            if self._mode == LATCHMODE['FOUR0']:
+    def set_position(self, new_pos):
+        if self._mode == LATCHMODE['FOUR0']:
             self._position = ((new_pos << 2) | (self._position & 3))
             self._positionExt = new_pos
             self._positionExtPrev = new_pos
-            elif self._mode == LATCHMODE['TWO03']:
+        elif self._mode == LATCHMODE['TWO03']:
             self._position = ((new_pos << 1) | (self._position & 1))
             self._positionExt = new_pos
             self._positionExtPrev = new_pos
-            else:
+        else:
             pass
 
-            def tick(self):
-            sig1 = self._pin1.read()
-            sig2 = self._pin2.read()
-            this_state = sig1 | (sig2 << 1)
+    def tick(self):
+        sig1 = self._pin1.read()
+        sig2 = self._pin2.read()
+        this_state = sig1 | (sig2 << 1)
 
-            if self._oldState != this_state:
+        if self._oldState != this_state:
             self._position += KNOBDIR[this_state | (self._oldState << 2)]
             self._oldState = this_state
 
             if self._mode == LATCHMODE['FOUR3']:
-                if thisState == LATCH3
-            # The hardware has 4 steps with a latch on the input state 3
-            self._positionExt = self._position >> 2
-            self._positionExtTimePrev = self._positionExtTime
-            self._positionExtTime = millis()  # TODO: GET TIME IN MILLISECONDS
-            elif self._mode == LATCHMODE['FOUR0']:
-                if thisState == LATCH0:
-                    # The hardware has 4 steps with a latch on the input state 0
+                if thisState == LATCH3:
+                    # The hardware has 4 steps with a latch on the input state 3
                     self._positionExt = self._position >> 2
                     self._positionExtTimePrev = self._positionExtTime
                     self._positionExtTime = millis()  # TODO: GET TIME IN MILLISECONDS
-            else:
-                if (thisState == LATCH0) | | (thisState == LATCH3):
-                # The hardware has 2 steps with a latch on the input state 0 and 3
-                self._positionExt = self._position >> 1
-                self._positionExtTimePrev = self._positionExtTime
-                self._positionExtTime = millis()
+                elif self._mode == LATCHMODE['FOUR0']:
+                    if thisState == LATCH0:
+                        # The hardware has 4 steps with a latch on the input state 0
+                        self._positionExt = self._position >> 2
+                        self._positionExtTimePrev = self._positionExtTime
+                        self._positionExtTime = millis()  # TODO: GET TIME IN MILLISECONDS
+                else:
+                    if (thisState == LATCH0) | | (thisState == LATCH3):
+                        # The hardware has 2 steps with a latch on the input state 0 and 3
+                        self._positionExt = self._position >> 1
+                        self._positionExtTimePrev = self._positionExtTime
+                        self._positionExtTime = millis()
 
-            def get_millis_between_rotations(self):
-            return self._positionExtTime - self._positionExtTimePrev)
+    def get_millis_between_rotations(self):
+        return self._positionExtTime - self._positionExtTimePrev)
 
     def get_RPM(self):
-        timeBetweenLastPositions = self._positionExtTime - self._positionExtTimePrev
-        timeToLastPosition = millis() - self._positionExtTime
-        t = max(timeBetweenLastPositions, timeToLastPosition)
+        timeBetweenLastPositions=self._positionExtTime - self._positionExtTimePrev
+        timeToLastPosition=millis() - self._positionExtTime
+        t=max(timeBetweenLastPositions, timeToLastPosition)
         return 60000.0 / float(t * 20)

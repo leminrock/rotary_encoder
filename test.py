@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import rotary_encoder as re
+import rotary_encoder as renc
 import mraa
 
 
@@ -11,6 +11,7 @@ PIN2 = 13
 
 enc = 0
 
+
 def isr_routine():
     enc.tick()
 
@@ -20,7 +21,7 @@ x = mraa.Gpio(PIN1)
 y = mraa.Gpio(PIN2)
 x.dir(mraa.DIR_IN)
 y.dir(mraa.DIR_IN)
-enc = re.RotaryEncoder(x, y, re.LATCHMODE['TWO03'])
+enc = re.RotaryEncoder(x, y, renc.LATCHMODE['TWO03'])
 x.isr(mraa.EDGE_BOTH, isr_routine, x)
 y.isr(mraa.EDGE_BOTH, isr_routine, y)
 

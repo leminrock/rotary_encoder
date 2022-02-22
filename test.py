@@ -15,11 +15,6 @@ class Tastoma:
 
 def isr_routine(gpio):
     enc._enc.tick()
-    # print(gpio.read())
-    # print()
-    # print()
-    # print(f"pin: {gpio.getPin(True)}\tvalue: {gpio.read()}")
-    # print()
 
 
 print("Test with rotary encoder")
@@ -33,13 +28,11 @@ enc = Tastoma(x, y)
 x.isr(mraa.EDGE_BOTH, isr_routine, x)
 y.isr(mraa.EDGE_BOTH, isr_routine, y)
 
+pos = 0
 
 while True:
-    pos = 0
     enc._enc.tick()
     new_pos = enc._enc.get_position()
     if pos != new_pos:
-        print("pos:", new_pos)
-        print(" dir:")
-        print(int(enc._enc.get_direction()))
+        print(f"pos: {new_pos}\tdir: {int(enc._enc.get_direction())}")
         pos = new_pos

@@ -14,7 +14,7 @@ class Tastoma:
 
 
 def isr_routine(gpio):
-    enc.tick()
+    enc._enc.tick()
     # print(gpio.read())
     # print()
     # print()
@@ -36,10 +36,10 @@ y.isr(mraa.EDGE_BOTH, isr_routine, y)
 
 while True:
     pos = 0
-    enc.tick()
-    new_pos = enc.get_position()
+    enc._enc.tick()
+    new_pos = enc._enc.get_position()
     if pos != new_pos:
         print("pos:", new_pos)
         print(" dir:")
-        print(int(enc.get_direction()))
+        print(int(enc._enc.get_direction()))
         pos = new_pos

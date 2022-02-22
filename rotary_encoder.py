@@ -84,18 +84,18 @@ class RotaryEncoder(object):
                     self._positionExt = self._position >> 2
                     self._positionExtTimePrev = self._positionExtTime
                     self._positionExtTime = millis()  # TODO: GET TIME IN MILLISECONDS
-                elif self._mode == LATCHMODE['FOUR0']:
-                    if this_state == LATCH0:
-                        # The hardware has 4 steps with a latch on the input state 0
-                        self._positionExt = self._position >> 2
-                        self._positionExtTimePrev = self._positionExtTime
-                        self._positionExtTime = millis()  # TODO: GET TIME IN MILLISECONDS
-                else:
-                    if (this_state == LATCH0) or (this_state == LATCH3):
-                        # The hardware has 2 steps with a latch on the input state 0 and 3
-                        self._positionExt = self._position >> 1
-                        self._positionExtTimePrev = self._positionExtTime
-                        self._positionExtTime = millis()
+            elif self._mode == LATCHMODE['FOUR0']:
+                if this_state == LATCH0:
+                    # The hardware has 4 steps with a latch on the input state 0
+                    self._positionExt = self._position >> 2
+                    self._positionExtTimePrev = self._positionExtTime
+                    self._positionExtTime = millis()  # TODO: GET TIME IN MILLISECONDS
+            else:
+                if (this_state == LATCH0) or (this_state == LATCH3):
+                    # The hardware has 2 steps with a latch on the input state 0 and 3
+                    self._positionExt = self._position >> 1
+                    self._positionExtTimePrev = self._positionExtTime
+                    self._positionExtTime = millis()
 
     def get_millis_between_rotations(self):
         return self._positionExtTime - self._positionExtTimePrev

@@ -23,17 +23,10 @@ def millis():
 
 
 class RotaryEncoder(object):
-    def __init__(self, pin1, pin2, mode=LATCHMODE['FOUR0']):
+    def __init__(self, pin1, pin2, mode=LATCHMODE['TWO03']):
         self._pin1 = pin1
         self._pin2 = pin2
         self._mode = mode
-
-        # pinMode(pin1, INPUT_PULLUP)
-        # pinMode(pin2, INPUT_PULLUP)
-        # self._pin1 = mraa.Gpio(pin1)
-        # self._pin2 = mraa.Gpio(pin2)
-        # self._pin1.dir(mraa.DIR_IN)
-        # self._pin2.dir(mraa.DIR_IN)
 
         self._oldState = None
         self._position = 0
@@ -56,11 +49,11 @@ class RotaryEncoder(object):
             ret = DIRECTION['COUNTERCLOCKWISE']
             self._positionExtPrev = self._positionExt
         elif self._positionExtPrev < self._positionExt:
-              ret = DIRECTION['CLOCKWISE']
-              self._positionExtPrev = self._positionExt
+            ret = DIRECTION['CLOCKWISE']
+            self._positionExtPrev = self._positionExt
         else:
-              ret = DIRECTION['NOROTATION']
-              self._positionExtPrev = self._positionExt
+            ret = DIRECTION['NOROTATION']
+            self._positionExtPrev = self._positionExt
 
         return ret
 
@@ -108,7 +101,7 @@ class RotaryEncoder(object):
         return self._positionExtTime - self._positionExtTimePrev
 
     def get_RPM(self):
-        timeBetweenLastPositions=self._positionExtTime - self._positionExtTimePrev
-        timeToLastPosition=millis() - self._positionExtTime
-        t=max(timeBetweenLastPositions, timeToLastPosition)
+        timeBetweenLastPositions = self._positionExtTime - self._positionExtTimePrev
+        timeToLastPosition = millis() - self._positionExtTime
+        t = max(timeBetweenLastPositions, timeToLastPosition)
         return 60000.0 / float(t * 20)

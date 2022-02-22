@@ -21,7 +21,7 @@ x = mraa.Gpio(PIN1)
 y = mraa.Gpio(PIN2)
 x.dir(mraa.DIR_IN)
 y.dir(mraa.DIR_IN)
-enc = re.RotaryEncoder(x, y, renc.LATCHMODE['TWO03'])
+enc = renc.RotaryEncoder(x, y, renc.LATCHMODE['TWO03'])
 x.isr(mraa.EDGE_BOTH, isr_routine, x)
 y.isr(mraa.EDGE_BOTH, isr_routine, y)
 

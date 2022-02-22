@@ -67,7 +67,9 @@ class RotaryEncoder(object):
             self._positionExt = new_pos
             self._positionExtPrev = new_pos
         else:
-            pass
+            self._position = ((new_pos << 2) | (self._position & 3))
+            self._positionExt = new_pos
+            self._positionExtPrev = new_pos
 
     def tick(self):
         sig1 = self._pin1.read()

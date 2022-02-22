@@ -12,8 +12,13 @@ PIN2 = 13
 enc = 0
 
 
-def isr_routine():
-    enc.tick()
+def isr_routine(gpio):
+    #enc.tick()
+    #print(gpio.read())
+    #print()
+    #print()
+    print(f"pin: {gpio.getPin(True)}\tvalue: {gpio.read()}")
+    print()
 
 
 print("Test with rotary encoder")

@@ -24,16 +24,16 @@ def millis():
 
 class RotaryEncoder(object):
     def __init__(self, pin1, pin2, mode=LATCHMODE['FOUR0']):
-        self._pin1
-        self._pin2
-        self._mode
+        self._pin1 = pin1
+        self._pin2 = pin2
+        self._mode = mode
 
         # pinMode(pin1, INPUT_PULLUP)
         # pinMode(pin2, INPUT_PULLUP)
-        self._pin1 = mraa.Gpio(pin1)
-        self._pin2 = mraa.Gpio(pin2)
-        self._pin1.dir(mraa.DIR_IN)
-        self._pin2.dir(mraa.DIR_IN)
+        # self._pin1 = mraa.Gpio(pin1)
+        # self._pin2 = mraa.Gpio(pin2)
+        # self._pin1.dir(mraa.DIR_IN)
+        # self._pin2.dir(mraa.DIR_IN)
 
         self._oldState = None
         self._position = 0
@@ -98,14 +98,14 @@ class RotaryEncoder(object):
                         self._positionExtTimePrev = self._positionExtTime
                         self._positionExtTime = millis()  # TODO: GET TIME IN MILLISECONDS
                 else:
-                    if (this_state == LATCH0) | | (this_state == LATCH3):
+                    if (this_state == LATCH0) or (this_state == LATCH3):
                         # The hardware has 2 steps with a latch on the input state 0 and 3
                         self._positionExt = self._position >> 1
                         self._positionExtTimePrev = self._positionExtTime
                         self._positionExtTime = millis()
 
     def get_millis_between_rotations(self):
-        return self._positionExtTime - self._positionExtTimePrev)
+        return self._positionExtTime - self._positionExtTimePrev
 
     def get_RPM(self):
         timeBetweenLastPositions=self._positionExtTime - self._positionExtTimePrev

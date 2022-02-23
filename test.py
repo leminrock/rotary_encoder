@@ -10,7 +10,7 @@ PIN2 = 13
 
 class Tastoma:
     def __init__(self, p1, p2):
-        self._enc = renc.RotaryEncoder(p1, p2, renc.LATCHMODE['TWO03'])
+        self._enc = renc.RotaryEncoder(p1, p2, renc.LATCHMODE['FOUR0'])
 
 
 def isr_routine(gpio):
@@ -22,7 +22,8 @@ x = mraa.Gpio(PIN1)
 y = mraa.Gpio(PIN2)
 x.dir(mraa.DIR_IN)
 y.dir(mraa.DIR_IN)
-
+x.mode(mraa.MODE_PULLUP)
+y.mode(mraa.MODE_PULLUP)
 enc = Tastoma(x, y)
 
 x.isr(mraa.EDGE_BOTH, isr_routine, x)

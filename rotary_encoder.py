@@ -32,8 +32,8 @@ class RotaryEncoder(object):
         self._position = 0
         self._positionExt = 0
         self._positionExtPrev = 0
-        self._positionExtTime = None
-        self._positionExtTimePrev = None
+        self._positionExtTime = 0
+        self._positionExtTimePrev = 0
 
         sig1 = self._pin1.read()
         sig2 = self._pin2.read()

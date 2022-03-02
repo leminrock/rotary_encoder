@@ -1,15 +1,18 @@
 #!/usr/bin/env python3
 
+import sys
 import mraa
 import rotary_encoder as renc
 
+p1 = int(sys.argv[1])
+p2 = int(sys.argv[2])
 
 def isr_routine(gpio):
     encoder.tick()
 
 
-PIN1 = 11
-PIN2 = 13
+PIN1 = p1
+PIN2 = p2
 
 x = mraa.Gpio(PIN1)
 y = mraa.Gpio(PIN2)
@@ -22,7 +25,7 @@ encoder = renc.RotaryEncoder(x, y, renc.LATCHMODE['FOUR0'])
 x.isr(mraa.EDGE_BOTH, isr_routine, x)
 y.isr(mraa.EDGE_BOTH, isr_routine, y)
 
-m = 50 # fattore di moltiplicazione
+m = 100 # fattore di moltiplicazione
 longCutoff = 50
 shortCutoff = 5
 a = (m - 1) / (shortCutoff - longCutoff)

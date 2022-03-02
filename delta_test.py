@@ -3,6 +3,7 @@
 import sys
 import mraa
 import rotary_encoder as renc
+import rock_button
 
 p1 = int(sys.argv[1])
 p2 = int(sys.argv[2])
@@ -25,7 +26,7 @@ encoder = renc.RotaryEncoder(x, y, renc.LATCHMODE['FOUR0'])
 x.isr(mraa.EDGE_BOTH, isr_routine, x)
 y.isr(mraa.EDGE_BOTH, isr_routine, y)
 
-m = 100 # fattore di moltiplicazione
+m = 50  # fattore di moltiplicazione
 longCutoff = 50
 shortCutoff = 5
 a = (m - 1) / (shortCutoff - longCutoff)
@@ -40,16 +41,16 @@ while True:
 
         if ms < longCutoff:
             if ms < shortCutoff:
-                ms = shortCutoff;
-        
+                ms = shortCutoff
+
             ticksActual_float = a * ms + b
-            #print(ticksActual_float)
+            # print(ticksActual_float)
 
             deltaTicks = int(ticksActual_float) * (newPos - lastPos)
-            #print(deltaTicks)
+            # print(deltaTicks)
 
             newPos = newPos + deltaTicks
             encoder.set_position(newPos)
 
-        print(newPos,'ms:',ms)
+        print(newPos, 'ms:', ms)
         lastPos = newPos

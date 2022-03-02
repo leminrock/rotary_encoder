@@ -3,6 +3,7 @@
 import sys
 import mraa
 import rotary_encoder as renc
+import rock_button
 
 p1 = int(sys.argv[1])
 p2 = int(sys.argv[2])
@@ -16,21 +17,16 @@ def but_routine(gpio):
 
 PIN1 = p1
 PIN2 = p2
-PIN3 = 12
 
 x = mraa.Gpio(PIN1)
 y = mraa.Gpio(PIN2)
-z = mraa.Gpio(PIN3)
 x.dir(mraa.DIR_IN)
 y.dir(mraa.DIR_IN)
-z.dir(mraa.DIR_IN)
 
 encoder = renc.RotaryEncoder(x, y, renc.LATCHMODE['FOUR0'])
 
 x.isr(mraa.EDGE_BOTH, isr_routine, x)
 y.isr(mraa.EDGE_BOTH, isr_routine, y)
-z.isr(mraa.EDGE_BOTH, but_routine, z)
-
 
 m = 50  # fattore di moltiplicazione
 longCutoff = 50

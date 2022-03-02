@@ -8,14 +8,18 @@ def button_isr_routine(gpio):
     print("button value", gpio.read())
 
 
-x = mraa.Gpio(3)
+#if int(sys.argv[1])
+PIN = 8
+print("pin:",8)
+x = mraa.Gpio(PIN)
 x.dir(mraa.DIR_IN)
-#x.mode(mraa.MODE_PULLUP)
+x.mode(mraa.MODE_PULLDOWN)
 x.isr(mraa.EDGE_BOTH, button_isr_routine, x)
-
+"""
 while True:
     try:
         print(x.read())
-        time.sleep(0.25)
+        time.sleep(0.2)
     except KeyboardInterrupt:
         sys.exit(0)
+"""

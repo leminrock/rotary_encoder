@@ -1,4 +1,4 @@
-#N canvas 1236 62 684 561 12;
+#N canvas 1232 62 684 561 12;
 #X obj 71 58 oscparse;
 #X obj 71 33 netreceive -b -u 7000;
 #X obj 71 83 list trim;
@@ -10,7 +10,6 @@
 #X msg 274 232 1;
 #X obj 261 317 list prepend send;
 #X obj 258 349 list trim;
-#X obj 226 105 loadbang;
 #X connect 0 0 2 0;
 #X connect 1 0 0 0;
 #X connect 2 0 3 0;
@@ -20,4 +19,3 @@
 #X connect 8 0 7 0;
 #X connect 9 0 10 0;
 #X connect 10 0 4 0;
-#X connect 11 0 5 0;

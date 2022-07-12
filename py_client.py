@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import rotary_encoder as renc
 import mraa
 from pythonosc import udp_client
@@ -46,6 +48,6 @@ if __name__ == '__main__':
         new_pos = enc._enc.get_position()
         if pos != new_pos:
             direction = int(enc._enc.get_direction())
-            print(f"pos: {new_pos}\tdir: {direction}")
+            #print(f"pos: {new_pos}\tdir: {direction}")
             client.send_message("/direction", direction)
             pos = new_pos

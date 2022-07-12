@@ -15,7 +15,7 @@ tm = _tm1637.TM1637(clk=CLK, dio=DIO)
 
 def filter_handler(address, *args):
     #print(f"{address}: {args}")
-    tm.show(args[0].rjust(4))
+    tm.show(str(args[0]).rjust(4))
 
 
 dispatcher = Dispatcher()

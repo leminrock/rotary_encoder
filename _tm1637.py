@@ -1,9 +1,6 @@
+# porting from https://github.com/depklyon/raspberrypi-tm1637 (many thanks!)
+
 from time import sleep
-
-#from wiringpi import wiringPiSetupGpio, pinMode, digitalRead, digitalWrite, GPIO
-
-# wiringPiSetupGpio()
-
 import mraa
 
 TM1637_CMD1 = 0x40  # 0x40 data command

@@ -27,34 +27,18 @@ class TM1637(object):
             raise ValueError("Brightness out of range")
         self._brightness = brightness
 
-        """
-        pinMode(self.clk, GPIO.OUTPUT)
-        pinMode(self.dio, GPIO.OUTPUT)
-        digitalWrite(self.clk, 0)
-        digitalWrite(self.dio, 0)"""
         self.clk.dir(mraa.DIR_OUT)
         self.dio.dir(mraa.DIR_OUT)
         self.clk.write(0)
         self.dio.write(0)
 
     def _start(self):
-        """
-        digitalWrite(self.clk, GPIO.HIGH)
-        digitalWrite(self.dio, GPIO.HIGH)
-        digitalWrite(self.dio, GPIO.LOW)
-        digitalWrite(self.clk, GPIO.LOW)
-        """
         self.clk.write(1)
         self.dio.write(1)
         self.dio.write(0)
         self.clk.write(0)
 
     def _stop(self):
-        """
-        digitalWrite(self.clk, GPIO.LOW)
-        digitalWrite(self.dio, GPIO.LOW)
-        digitalWrite(self.clk, GPIO.HIGH)
-        digitalWrite(self.dio, GPIO.HIGH)"""
         self.clk.write(0)
         self.dio.write(0)
         self.clk.write(1)

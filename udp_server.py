@@ -2,13 +2,20 @@
 
 import random
 import asyncio
+import _tm1637
 from pythonosc.osc_server import AsyncIOOSCUDPServer
 from pythonosc.dispatcher import Dispatcher
 from pythonosc import udp_client
 
+CLK = 24
+DIO = 23
+
+tm = _tm1637.TM1637(clk=CLK, dio=DIO)
+
 
 def filter_handler(address, *args):
-    print(f"{address}: {args}")
+    #print(f"{address}: {args}")
+    tm.show(args[0].rjust(4))
 
 
 dispatcher = Dispatcher()

@@ -56,5 +56,5 @@ while True:
             newPos = newPos + deltaTicks
             encoder.set_position(newPos)
 
-        print(newPos, 'ms:', ms)
+        print(newPos - lastPos, 'ms:', ms)
         lastPos = newPos

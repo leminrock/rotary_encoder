@@ -3,14 +3,15 @@
 import mraa
 import sys
 import time
+from signal import pause
 
 def button_isr_routine(gpio):
     print("button value", gpio.read())
 
 
 #if int(sys.argv[1])
-PIN = 8
-print("pin:",8)
+PIN = 5
+print("pin:", PIN)
 x = mraa.Gpio(PIN)
 x.dir(mraa.DIR_IN)
 x.mode(mraa.MODE_PULLDOWN)
@@ -23,3 +24,4 @@ while True:
     except KeyboardInterrupt:
         sys.exit(0)
 """
+pause()

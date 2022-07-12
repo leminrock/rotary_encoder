@@ -4,8 +4,8 @@ import rotary_encoder as renc
 import mraa
 
 
-PIN1 = 11
-PIN2 = 13
+PIN1 = 8
+PIN2 = 10
 
 
 class Tastoma:

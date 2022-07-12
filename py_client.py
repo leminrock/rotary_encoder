@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import rotary_encoder as renc
+import rotaryrencoder as renc
 import mraa
 from pythonosc import udp_client
 
@@ -10,44 +10,40 @@ PIN1 = 8
 PIN2 = 10
 
 
-class Tastoma:
+class Encoder:
     def __init__(self, p1, p2):
-        self._enc = renc.RotaryEncoder(p1, p2, renc.LATCHMODE['FOUR3'])
+        self.renc = renc.RotaryEncoder(p1, p2, renc.LATCHMODE['FOUR3'])
 
 
 def isr_routine(gpio):
-    enc._enc.tick()
+    enc.renc.tick()
 
+
+def configure_pin(pin):
+    x = mraa.Gpio(pin)
+    x.dir(mraa.DIR_IN)
+    x.mode(mraa.MODE_PULLUP)
+    return x
 
 if __name__ == '__main__':
     client = udp_client.SimpleUDPClient(IP, PORT)
 
-    x = mraa.Gpio(PIN1)
-    y = mraa.Gpio(PIN2)
-    x.dir(mraa.DIR_IN)
-    y.dir(mraa.DIR_IN)
-    x.mode(mraa.MODE_PULLUP)
-    y.mode(mraa.MODE_PULLUP)
-    enc = Tastoma(x, y)
+    x = configure_pin(PIN1)
+    y = configure_pin(PIN2)
+    
+    enc = Encoder(x, y)
 
     x.isr(mraa.EDGE_BOTH, isr_routine, x)
     y.isr(mraa.EDGE_BOTH, isr_routine, y)
 
     pos = 0
-    lastdir = None
-
-    """
-    while True:
-        client.send_message("/filter", random.random())
-        print("send")
-        time.sleep(1)
-    """
 
     while True:
-        enc._enc.tick()
-        new_pos = enc._enc.get_position()
+        enc.renc.tick()
+        new_pos = enc.renc.get_position()
+
         if pos != new_pos:
-            direction = int(enc._enc.get_direction())
+            direction = int(enc.renc.get_direction())
             #print(f"pos: {new_pos}\tdir: {direction}")
             client.send_message("/direction", direction)
             pos = new_pos

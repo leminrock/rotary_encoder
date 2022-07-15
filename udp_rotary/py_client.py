@@ -58,9 +58,10 @@ class Encoder:
 
 if __name__ == '__main__':
     client = udp_client.SimpleUDPClient(IP, PORT)
-    rot1 = Encoder(BUTTON0_PIN1, BUTTON0_PIN2, address='/rotary_0')
-    rot2 = Encoder(BUTTON1_PIN1, BUTTON1_PIN2, address='/rotary_1')
-    encoders = [rot1, rot2]
+    encoders = [
+        Encoder(BUTTON0_PIN1, BUTTON0_PIN2, address='/rotary_0'),
+        Encoder(BUTTON1_PIN1, BUTTON1_PIN2, address='/rotary_1')
+    ]
 
     while True:
         map(lambda x: x.update(client.send_message), encoders)

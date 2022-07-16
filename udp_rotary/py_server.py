@@ -8,7 +8,7 @@ IP = '127.0.0.1'
 IN_PORT = 8000
 CLK = 24
 DIO = 23
-ADDRESS = ['/rotary_0', 'rotary_1']
+ADDRESS = ['/rotary_0', '/rotary_1']
 
 tm = _tm1637.TM1637(clk=CLK, dio=DIO)
 

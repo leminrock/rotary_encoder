@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 
-import rotary_rencoder as renc
+import rotary_encoder as renc
 import mraa
 from pythonosc import udp_client
 from colorama import Fore

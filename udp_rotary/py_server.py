@@ -8,6 +8,7 @@ IP = '127.0.0.1'
 IN_PORT = 8000
 CLK = 24
 DIO = 23
+ADDRESS = ['/rotary_0', 'rotary_1']
 
 tm = _tm1637.TM1637(clk=CLK, dio=DIO)
 
@@ -22,7 +23,7 @@ def value_handler(unused_addr, *args):
 if __name__ == '__main__':
 
     dispatcher = dispatcher.Dispatcher()
-    dispatcher.map("/filter", value_handler)
+    list(map(lambda x: dispatcher.map(x, value_handler), ADDRESS))
 
     server = osc_server.ThreadingOSCUDPServer((IP, IN_PORT), dispatcher)
     print("Serving on {}".format(server.server_address))

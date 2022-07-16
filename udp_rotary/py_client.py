@@ -40,9 +40,9 @@ class Encoder:
         return c_pin
 
     def __config(self, pin1, pin2, latchmode, routine):
-        x, y = map(self.__configure_pin, [pin1, pin2])
+        x, y = list(map(self.__configure_pin, [pin1, pin2]))
         self.rot = renc.RotaryEncoder(x, y, renc.LATCHMODE[latchmode])
-        map(lambda x: x.isr(mraa.EDGE_BOTH, routine, self.rot), [x, y])
+        list(map(lambda x: x.isr(mraa.EDGE_BOTH, routine, self.rot), [x, y]))
 
     def update(self, sender_func):
         """call this function every iteration of main loop"""
@@ -64,4 +64,4 @@ if __name__ == '__main__':
     ]
 
     while True:
-        map(lambda x: x.update(client.send_message), encoders)
+        list(map(lambda x: x.update(client.send_message), encoders))

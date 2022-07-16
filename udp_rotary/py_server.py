@@ -13,8 +13,9 @@ tm = _tm1637.TM1637(clk=CLK, dio=DIO)
 
 
 def value_handler(unused_addr, *args):
-    value = int(args[0])
-    value = str(value)
+    """callback function"""
+    value = args[0]
+    value = str(int(value))
     tm.show(value.rjust(4))
 
 

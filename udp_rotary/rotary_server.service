@@ -1,0 +1,12 @@
+[Unit]
+Description=rotary service
+StartLimitIntervalSec=0
+
+[Service]
+Type=oneshot
+User=root
+ExecStart=/home/rock/Documents/rotary_encoder/udp_rotary/py_server.py
+Type=idle
+
+[Install]
+WantedBy=multi-user.target

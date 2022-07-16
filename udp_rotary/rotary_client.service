@@ -5,7 +5,7 @@ StartLimitIntervalSec=0
 [Service]
 Type=oneshot
 User=root
-ExecStart=/home/rock/Documents/rotary_encoder/test.py
+ExecStart=/home/rock/Documents/rotary_encoder/udp_rotary/py_client.py
 Type=idle
 
 [Install]

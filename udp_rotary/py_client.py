@@ -23,7 +23,9 @@ def init_config():
     IP = data['network']['IP']
     IN_PORT = data['network']['IN_PORT']
 
-    print(DEBUG, IP, IN_PORT)
+    buttons = data['buttons']
+
+    print([buttons[i] for i in buttons])
 
 
 def debug(txt):

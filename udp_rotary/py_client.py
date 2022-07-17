@@ -1,19 +1,29 @@
 #!/usr/bin/env python3
 
-import rotary_encoder as renc
 import mraa
+import toml
+import rotary_encoder as renc
 from pythonosc import udp_client
 from colorama import Fore
 
-DEBUG = 1
-IP = '127.0.0.1'
-PORT = 7000
-BUTTON0_PIN1 = 3
-BUTTON0_PIN2 = 5
-BUTTON1_PIN1 = 8
-BUTTON1_PIN2 = 10
-BUTTON2_PIN1 = 23
-BUTTON2_PIN2 = 24
+
+DEBUG = None
+IP = None
+IN_PORT = None
+CONFIG_PATH = '/rot_config.toml'
+
+
+def init_config():
+    global DEBUG, IP, IN_PORT
+
+    with open(CONFIG_PATH, 'r') as f:
+        data = toml.load(f)
+
+    DEBUG = data['debug']['DEBUG']
+    IP = data['network']['IP']
+    IN_PORT = data['network']['IN_PORT']
+
+    print(DEBUG, IP, IN_PORT)
 
 
 def debug(txt):

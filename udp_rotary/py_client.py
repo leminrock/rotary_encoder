@@ -12,6 +12,8 @@ BUTTON0_PIN1 = 3
 BUTTON0_PIN2 = 5
 BUTTON1_PIN1 = 8
 BUTTON1_PIN2 = 10
+BUTTON2_PIN1 = 23
+BUTTON2_PIN2 = 24
 
 
 def debug(txt):
@@ -60,7 +62,8 @@ if __name__ == '__main__':
     client = udp_client.SimpleUDPClient(IP, PORT)
     encoders = [
         Encoder(BUTTON0_PIN1, BUTTON0_PIN2, address='/rotary_0'),
-        Encoder(BUTTON1_PIN1, BUTTON1_PIN2, address='/rotary_1')
+        Encoder(BUTTON1_PIN1, BUTTON1_PIN2, address='/rotary_1'),
+        Encoder(BUTTON2_PIN1, BUTTON2_PIN2, address='/rotary_2')
     ]
 
     while True:

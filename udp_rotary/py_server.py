@@ -6,8 +6,6 @@ from pythonosc import dispatcher
 from pythonosc import osc_server
 
 
-#tm = _tm1637.TM1637(clk=CLK, dio=DIO)
-
 IP = None
 IN_PORT = None
 ADDRESS = None
@@ -37,7 +35,7 @@ def value_handler(unused_addr, *args):
     #value = str(int(value))
     # tm.show(value.rjust(4))
     value = int(value)
-    tm.number(value)
+    TM.number(value)
 
 
 if __name__ == '__main__':

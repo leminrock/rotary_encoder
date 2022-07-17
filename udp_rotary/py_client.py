@@ -77,7 +77,7 @@ if __name__ == '__main__':
         Encoder(BUTTON2_PIN1, BUTTON2_PIN2, address='/rotary_2')
     ]
     """
-    encoders = [enc['PINS'][0], enc['PINS'][1], enc['address'] for enc in ENCODERS]
+    encoders = [[enc['PINS'][0], enc['PINS'][1], enc['ADDRESS']] for enc in ENCODERS]
     print(encoders)
 
     while True:

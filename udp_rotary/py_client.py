@@ -69,7 +69,8 @@ class Encoder:
 
 
 if __name__ == '__main__':
-    client = udp_client.SimpleUDPClient(IP, PORT)
+    init_config()
+    client = udp_client.SimpleUDPClient(IP, IN_PORT)
     encoders = [
         Encoder(BUTTON0_PIN1, BUTTON0_PIN2, address='/rotary_0'),
         Encoder(BUTTON1_PIN1, BUTTON1_PIN2, address='/rotary_1'),

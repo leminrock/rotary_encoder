@@ -80,7 +80,7 @@ if __name__ == '__main__':
     encoders = [Encoder(
         enc['PINS'][0],
         enc['PINS'][1],
-        enc['ADDRESS']) for enc in ENCODERS]
+        address=enc['ADDRESS']) for enc in ENCODERS]
 
     while True:
         list(map(lambda x: x.update(client.send_message), encoders))

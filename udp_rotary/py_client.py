@@ -10,7 +10,7 @@ from colorama import Fore
 DEBUG = None
 IP = None
 IN_PORT = None
-CONFIG_PATH = '/rot_config.toml'
+CONFIG_PATH = './rot_config.toml'
 
 
 def init_config():

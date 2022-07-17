@@ -14,7 +14,7 @@ CONFIG_PATH = './rot_config.toml'
 
 
 def init_config():
-    global DEBUG, IP, IN_PORT
+    global DEBUG, IP, IN_PORT, ENCODERS
 
     with open(CONFIG_PATH, 'r') as f:
         data = toml.load(f)
@@ -22,10 +22,7 @@ def init_config():
     DEBUG = data['debug']['DEBUG']
     IP = data['network']['IP']
     IN_PORT = data['network']['IN_PORT']
-
-    buttons = data['buttons']
-
-    print([buttons[i] for i in buttons])
+    ENCODERS = [data['encoders'][enc] for enc in data['encoders']]
 
 
 def debug(txt):
@@ -73,11 +70,15 @@ class Encoder:
 if __name__ == '__main__':
     init_config()
     client = udp_client.SimpleUDPClient(IP, IN_PORT)
+    """
     encoders = [
         Encoder(BUTTON0_PIN1, BUTTON0_PIN2, address='/rotary_0'),
         Encoder(BUTTON1_PIN1, BUTTON1_PIN2, address='/rotary_1'),
         Encoder(BUTTON2_PIN1, BUTTON2_PIN2, address='/rotary_2')
     ]
+    """
+    encoders = [enc['PINS'][0], enc['PINS'][1], enc['address'] for enc in ENCODERS]
+    print(encoders)
 
     while True:
         list(map(lambda x: x.update(client.send_message), encoders))

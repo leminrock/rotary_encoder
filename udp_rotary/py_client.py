@@ -9,19 +9,19 @@ from colorama import Fore
 
 DEBUG = None
 IP = None
-IN_PORT = None
+OUT_PORT = None
 CONFIG_PATH = './rot_config.toml'
 
 
 def init_config():
-    global DEBUG, IP, IN_PORT, ENCODERS
+    global DEBUG, IP, OUT_PORT, ENCODERS
 
     with open(CONFIG_PATH, 'r') as f:
         data = toml.load(f)
 
     DEBUG = data['debug']['DEBUG']
     IP = data['network']['IP']
-    IN_PORT = data['network']['IN_PORT']
+    OUT_PORT = data['network']['OUT_PORT']
     ENCODERS = [data['encoders'][enc] for enc in data['encoders']]
 
 
@@ -69,14 +69,7 @@ class Encoder:
 
 if __name__ == '__main__':
     init_config()
-    client = udp_client.SimpleUDPClient(IP, IN_PORT)
-    """
-    encoders = [
-        Encoder(BUTTON0_PIN1, BUTTON0_PIN2, address='/rotary_0'),
-        Encoder(BUTTON1_PIN1, BUTTON1_PIN2, address='/rotary_1'),
-        Encoder(BUTTON2_PIN1, BUTTON2_PIN2, address='/rotary_2')
-    ]
-    """
+    client = udp_client.SimpleUDPClient(IP, OUT_PORT)
     encoders = [Encoder(
         enc['PINS'][0],
         enc['PINS'][1],

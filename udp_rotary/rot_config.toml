@@ -3,8 +3,8 @@ DEBUG = 1
 
 [network]
 IP = '127.0.0.1'
-OUT_PORT = 7000
 IN_PORT = 8000
+OUT_PORT = 7000
 
 [encoders]
     [encoders.e0]

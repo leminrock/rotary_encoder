@@ -37,9 +37,9 @@ kernelimg=vmlinuz-4.4.143-67-rockchip-g01bbbc5d1312
 
 and connect i2c device to theese pins:
 
-```
-| rockpis | dev     |
-| ------- | ------- |
-| 11      | 2 - DIO |
-| 13      | 1 - CLK |
-```
+
+| ------- | ----- |
+| rockpis | dev   |
+| ------- | ----- |
+| 11      | 2 DIO |
+| 13      | 1 CLK |

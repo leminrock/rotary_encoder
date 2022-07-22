@@ -45,6 +45,7 @@
 #X obj 627 636 v a\$0;
 #X obj 595 762 v b\$0;
 #X obj 59 630 expr ($f1 * a\$0) + b\$0;
+#X obj 747 583 v shortCutoff\$0;
 #X connect 6 0 8 1;
 #X connect 6 0 10 0;
 #X connect 7 0 8 0;

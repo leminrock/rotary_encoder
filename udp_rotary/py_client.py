@@ -4,13 +4,15 @@ import mraa
 import toml
 import rotary_encoder as renc
 from pythonosc import udp_client
+from pathlib import Path
 from colorama import Fore
 
 
 DEBUG = None
 IP = None
 OUT_PORT = None
-CONFIG_PATH = './rot_config.toml'
+MAINPATH = Path(__file__).parent.absolute()
+CONFIG_PATH = MAINPATH / Path('rot_config.toml')
 
 
 def init_config():
@@ -23,6 +25,7 @@ def init_config():
     IP = data['network']['IP']
     OUT_PORT = data['network']['OUT_PORT']
     ENCODERS = [data['encoders'][enc] for enc in data['encoders']]
+    print(DEBUG, IP,type(IP), OUT_PORT, type(OUT_PORT), ENCODERS)
 
 
 def debug(txt):

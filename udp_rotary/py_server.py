@@ -4,7 +4,7 @@ import toml
 import _tm1637
 from pythonosc import dispatcher
 from pythonosc import osc_server
-
+from pathlib import Path
 
 IP = None
 IN_PORT = None
@@ -12,7 +12,8 @@ ADDRESS = None
 CLK = None
 DIO = None
 TM = None
-CONFIG_PATH = './rot_config.toml'
+MAINPATH = Path(__file__).parent.absolute()
+CONFIG_PATH = MAINPATH / Path('/rot_config.toml')
 
 
 def init_config():

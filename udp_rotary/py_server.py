@@ -33,8 +33,6 @@ def init_config():
 def value_handler(unused_addr, *args):
     """callback function"""
     value = args[0]
-    #value = str(int(value))
-    # tm.show(value.rjust(4))
     value = int(value)
     TM.number(value)
 

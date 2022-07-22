@@ -7,7 +7,7 @@ TM1637_CMD1 = 0x40  # 0x40 data command
 TM1637_CMD2 = 0xc0  # 0xC0 address command
 TM1637_CMD3 = 0x80  # 0x80 display control command
 TM1637_DSP_ON = 0x08  # 0x08 display on
-TM1637_DELAY = 0.00000001  # 10us delay between clk/dio pulses
+TM1637_DELAY = 0.000001  # 10us delay between clk/dio pulses
 TM1637_MSB = 0x80  # msb is the decimal point or the colon depending on your display
 
 # 0-9, a-z, blank, dash, star

@@ -13,7 +13,7 @@ CLK = None
 DIO = None
 TM = None
 MAINPATH = Path(__file__).parent.absolute()
-CONFIG_PATH = MAINPATH / Path('/rot_config.toml')
+CONFIG_PATH = MAINPATH / Path('rot_config.toml')
 
 
 def init_config():

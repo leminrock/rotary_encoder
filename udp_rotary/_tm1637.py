@@ -58,23 +58,17 @@ class TM1637(object):
 
     def _write_byte(self, b):
         for i in range(8):
-            #digitalWrite(self.dio,(b >> i) & 1)
             self.dio.write((b >> i) & 1)
-            sleep(TM1637_DELAY)
-            #digitalWrite(self.clk, GPIO.HIGH)
+            # sleep(TM1637_DELAY)
             self.clk.write(1)
-            sleep(TM1637_DELAY)
-            #digitalWrite(self.clk, GPIO.LOW)
+            # sleep(TM1637_DELAY)
             self.clk.write(0)
-            sleep(TM1637_DELAY)
+            # sleep(TM1637_DELAY)
 
-        #digitalWrite(self.clk, GPIO.LOW)
         self.clk.write(0)
-        sleep(TM1637_DELAY)
-        #digitalWrite(self.clk, GPIO.HIGH)
+        # sleep(TM1637_DELAY)
         self.clk.write(1)
-        sleep(TM1637_DELAY)
-        #digitalWrite(self.clk, GPIO.LOW)
+        # sleep(TM1637_DELAY)
         self.clk.write(0)
 
     def brightness(self, val=None):

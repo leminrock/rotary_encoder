@@ -13,6 +13,8 @@
 #X obj 71 108 route rotary_0 rotary_1 rotary_2, f 65;
 #X obj 71 175 acceleration;
 #X obj 221 175 acceleration;
+#X obj 372 175 acceleration;
+#X obj 372 268 oscformat rotary_2;
 #X connect 0 0 2 0;
 #X connect 1 0 0 0;
 #X connect 2 0 11 0;
@@ -25,5 +27,8 @@
 #X connect 10 0 6 0;
 #X connect 11 0 12 0;
 #X connect 11 1 13 0;
+#X connect 11 2 14 0;
 #X connect 12 0 9 0;
 #X connect 13 0 10 0;
+#X connect 14 0 15 0;
+#X connect 15 0 6 0;

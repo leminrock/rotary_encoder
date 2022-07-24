@@ -3,8 +3,8 @@
 import time
 import mraa
 
-pin1 = 11
-pin2 = 13
+pin1 = 23
+pin2 = 24
 
 p1 = mraa.Gpio(pin1)
 p2 = mraa.Gpio(pin2)
